@@ -1,0 +1,40 @@
+name: 📈 Automatización de Datos Históricos MSFT
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # ⏰ Se Ejecuta Cada Día a La Medianoche (UTC)
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: 🚀 Ejecutar el colector
+        run: |
+          msft-collector
+
+      - name: 📂 Configurar Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: 📤 Hacer commit de los datos actualizados
+        run: |
+          git add src/msft_analytics/static/data/*
+          git add src/msft_analytics/static/logs/msft_analytics.log
+          git commit -m "Actualización automática de datos MSFT [GitHub Actions]" || echo "No hay cambios para commitear"
+          git push
