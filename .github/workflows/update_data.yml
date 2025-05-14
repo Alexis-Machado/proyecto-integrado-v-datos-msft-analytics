@@ -2,7 +2,7 @@ name: 📈 Automatización de Datos Históricos MSFT
 
 on:
   schedule:
-    - cron: "0 0 * * *" # ⏰ Se Ejecuta Cada Día a La Medianoche (UTC)
+    - cron: "0 5 * * *" # ⏰ Se Ejecuta Cada Día a Medianoche (hora de Colombia, UTC-5)
   workflow_dispatch:
 
 jobs:
