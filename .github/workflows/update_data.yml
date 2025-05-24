@@ -2,7 +2,7 @@ name: 📊 MSFT DataOps - Colector, Enriquecimiento, Modelo y Dashboard
 
 on:
   schedule:
-    - cron: "0 0 * * *" # ⏰ Se ejecuta cada día a la medianoche UTC
+    - cron: "0 5 * * *" # ⏰ Se Ejecuta Cada Día a Medianoche (hora de Colombia, UTC-5)
   workflow_dispatch:
 
 jobs:
