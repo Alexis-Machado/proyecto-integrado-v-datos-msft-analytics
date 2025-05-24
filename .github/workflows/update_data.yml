@@ -1,8 +1,8 @@
-name: 📈 Automatización de Datos Históricos MSFT
+name: 📊 MSFT DataOps - Colector, Enriquecimiento, Modelo y Dashboard
 
 on:
   schedule:
-    - cron: "0 0 * * *" # ⏰ Se Ejecuta Cada Día a La Medianoche (UTC)
+    - cron: "0 0 * * *" # ⏰ Se ejecuta cada día a la medianoche UTC
   workflow_dispatch:
 
 jobs:
@@ -23,18 +23,31 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
 
-      - name: 🚀 Ejecutar el colector
+      - name: 🚀 Ejecutar colector
         run: |
           msft-collector
+
+      - name: ✨ Ejecutar enriquecimiento
+        run: |
+          msft-enricher
+
+      - name: 🧠 Ejecutar modelo
+        run: |
+          msft-modeller
+
+      - name: 🔮 Ejecutar predicción
+        run: |
+          msft-predict
 
       - name: 📂 Configurar Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: 📤 Hacer commit de los datos actualizados
+      - name: 📤 Commit del Colector, Enriquecimiento, Modelo y Dashboard
         run: |
-          git add src/msft_analytics/static/data/*
-          git add src/msft_analytics/static/logs/msft_analytics.log
-          git commit -m "Actualización automática de datos MSFT [GitHub Actions]" || echo "No hay cambios para commitear"
+          git add src/msft_analytics/static/data/*.csv
+          git add src/msft_analytics/static/logs/*.log
+          git add src/msft_analytics/static/models/*.pkl
+          git commit -m "📊 Actualización Automática de Datos [GitHub Actions]" || echo "No hay cambios para commitear"
           git push
