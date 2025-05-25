@@ -7,30 +7,124 @@
 
 ---
 
-Este proyecto implementa **EA1 – Ingestión de Datos** para recolectar, transformar, persistir y auditar datos históricos de la acción **Microsoft Corporation (MSFT)** desde **Yahoo Finanzas**, empleando:
+<div align="center" style="margin: 40px 0;">
+  <a href="https://msft-analytics-dashboard.streamlit.app/" target="_blank" 
+     style="
+       display: inline-block;
+       background-color: #d32f2f;
+       color: white;
+       font-size: 26px;
+       font-weight: bold;
+       padding: 18px 45px;
+       border-radius: 12px;
+       text-decoration: none;
+       box-shadow: 0 4px 12px rgba(211,47,47,0.4);
+       transition: background-color 0.3s ease;
+     "
+     onmouseover="this.style.backgroundColor='#b02727'"
+     onmouseout="this.style.backgroundColor='#d32f2f'"
+  >
+    🚀 Abrir Dashboard Interactivo en Streamlit
+  </a>
+  <div style="margin-top: 15px; font-size: 16px; font-style: italic;">
+    Haz clic para explorar los KPIs y visualizaciones interactivas del proyecto.
+  </div>
+</div>
 
-- **Python** 🐍
-- **yfinance** 🤖
-- **pandas** 📊
-- **SQLite** 🗄️
-- **CSV** 📑
-- **GitHub Actions** 🤖 (CI/CD semanal)
+
+
+---
+
+Este proyecto implementa **EA1 – Ingestión de Datos** para recolectar, transformar, persistir y auditar datos históricos de la acción **Microsoft Corporation (MSFT)** desde **Yahoo Finanzas**, 
+
+El proyecto emplea:
+
+- **Python** 🐍  
+- **venv** 📦
+- **yfinance** 🤖  
+- **pandas** 📊 
+- **numpy** 🔢
+- **scikit-learn** 📊
+- **statsmodels** 📉
+- **matplotlib** 🎨
+- **tensorflow** ⚡
+- **streamlit** 🖥️
+- **plotly** ✨
+- **CSV** 📑 
+- **SQLite** 🗄️    
+- **logs** 📋
+- **Modelo LSTM** 🧠
+- **pkl** 💾
+- **GitHub Actions** 🤖 (CI/CD diario automatizado)
+
+Entre otros.
+
+---
+
+Este proyecto también implementa **EA2 – Entrega 2** para:
+
+
+### 🔄 Enriquecimiento de Datos
+
+Se añaden fuentes adicionales y transformaciones (variables temporales, indicadores macro).
+
+Se incorporan transformaciones y nuevas variables a la serie temporal, incluyendo:
+
+- Variables temporales (día de la semana, mes, etc.) 📅  
+- Indicadores técnicos y macroeconómicos 📉  
+- Limpieza y formateo avanzado de los datos 🧹  
+
+---
+
+### 🧠 Modelo Predictivo
+
+Se ha utilizado un **modelo de red neuronal recurrente** concreto:
+
+* **Arquitectura**: un `Sequential` de Keras con
+
+  1. Una capa **LSTM** de 50 unidades (activación ReLU)
+  2. Una capa **Dense** de salida (1 neurona)
+
+Este tipo de modelo (Long Short-Term Memory) está diseñado para capturar dependencias temporales en series de datos (aquí, precios de cierre diarios), aprovechando su “memoria” interna para modelar patrones a lo largo de la ventana de entrada (30 días).
+
+
+El modelo está implementado en una clase dedicada dentro de `src/modeller.py`, que incluye:
+
+- `entrenar()`: entrena un modelo de series de tiempo y guarda el artefacto en `static/models/model.pkl`  
+- `predecir()`: carga el modelo entrenado y genera predicciones futuras  
+
+📐 **Métrica utilizada**:  
+Se justifica el uso de **RMSE (Root Mean Squared Error)** por penalizar errores grandes, ideal para predicción de precios financieros. Se muestra su cálculo durante la evaluación del modelo.
+
+---
+
+### 📊 Dashboard BI Interactivo
+
+Interfaz interactiva con 5 KPI (tasa de variación, media móvil, volatilidad, retorno acumulado, desviación estándar).
+
+Desarrollado con **Streamlit**, visualiza y permite explorar de forma intuitiva **5 KPIs clave**:
+
+- 📈 Tasa de variación  
+- 🔁 Media móvil  
+- ⚖️ Volatilidad  
+- 💹 Retorno acumulado  
+- 📏 Desviación estándar  
+
+Se encuentra en `src/dashboard.py` y se actualiza automáticamente mediante GitHub Actions, asi también mediante Streamlit.
 
 ---
 
 ## Contenido
 
-1. [Descripción General](#descripción-general-🌟)  
-2. [Características Principales](#características-principales-✨)  
-3. [Estructura del Proyecto](#estructura-del-proyecto-📂)  
-4. [Requerimientos Previos](#requerimientos-previos-✅)  
-5. [Instalación y Setup](#instalación-y-setup-⚙️)  
-6. [Uso Local](#uso-local-🚀)  
-7. [Automatización con GitHub Actions](#automatización-con-github-actions-🤖)  
-8. [Trazabilidad y Logging](#trazabilidad-y-logging-🪵)  
-9. [Resultados Obtenidos](#resultados-obtenidos-📈)  
-10. [Licencia y Autores](#licencia-y-autores-📝)
-11. [Autores](#11-autores)
+1. [Descripción General](#descripción-general-🌟)   
+2. [Estructura del Proyecto](#estructura-del-proyecto-📂)  
+3. [Requerimientos Previos](#requerimientos-previos-✅)  
+4. [Instalación y Setup](#instalación-y-setup-⚙️)  
+5. [Uso Local](#uso-local-🚀)  
+6. [Automatización con GitHub Actions](#automatización-con-github-actions-🤖)  
+7. [Trazabilidad y Logging](#trazabilidad-y-logging-🪵)  
+8. [Licencia y Autores](#licencia-y-autores-📝)
+9. [Autores](#11-autores)
 
 ---
 
@@ -40,64 +134,79 @@ Desde su salida a bolsa el **13 de marzo de 1986**, MSFT ha generado **casi 40 a
 
 - **Automatiza** la descarga de cotizaciones 📥  
 - **Transforma** y estandariza formatos 🧹  
+- **Enriquece** los datos con variables adicionales (p. ej., temporales o indicadores macroeconómicos, entre otras) 📊  
 - **Persiste** el histórico de manera incremental en **SQLite** y **CSV** 🗄️📑  
 - **Registra** cada paso con un **sistema de logging dual** (consola + archivo) 🪵  
 - **Programa** actualizaciones diarias mediante **GitHub Actions** ⏰🤖  
 
-Es la base para análisis cuantitativos, investigación académica y modelos predictivos.
+Además, incluye:
+
+- **Modelo predictivo** en un módulo independiente (`src/modeller.py`) 🤖📈  
+  - `entrenar()`: entrena y guarda el modelo como artefacto, archivo en `static/models/model.pkl`  
+  - `predecir()`: carga `model.pkl` y devuelve predicciones  
+  - Justificación y cálculo de métricas como **RMSE**, **MAE**, u otras apropiadas según el caso 📐  
+
+- **Dashboard BI interactivo** con al menos **5 KPI clave**:  
+  - Tasa de variación 📈  
+  - Media móvil 📉  
+  - Volatilidad 📊  
+  - Retorno acumulado 🔁  
+  - Desviación estándar 📏  
 
 ---
 
-## 2. Características Principales ✨
-
-- **Descarga fiable** de Yahoo Finanzas (`yfinance`) hasta “mañana” para incluir el cierre más reciente.  
-- **Columnas en español**: `Fecha`, `Abrir`, `Máx.`, `Mín.`, `Cerrar`, `Volumen`.  
-- **Desglose de fecha** en `año`, `mes`, `día` para consultas granulares.  
-- **Persistencia incremental**: sólo nuevos registros, sin duplicados.  
-- **Formatos duales**:
-  - **SQLite** (`static/data/historical.db`)  
-  - **CSV**  (`static/data/historical.csv`)  
-- **Trazabilidad completa** con logger que genera `static/logs/msft_analytics.log`.  
-- **CLI**: comando `msft-collector` integrado en `setup.py`.  
-- **CI/CD**: workflow diario (cron), manual (dispatch) y on-push en `.github/workflows/update_data.yml`.
-
----
-
-## 3. Estructura del Proyecto 📂
+## 2. Estructura del Proyecto 📂
 
 ```text
 proyecto-integrado-v-datos-msft-analytics/
-├── src/msft_analytics/
-│   ├── collector.py         # Clase MSFTCollector
-│   ├── logger.py            # Logger dual consola/archivo
-│   └── static/
-│       ├── data/
-│       │   ├── historical.db     # Base SQLite
-│       │   └── historical.csv    # Exportación CSV
-│       └── logs/
-│           └── msft_analytics.log
-├── setup.py                 # Instalación y entry-point
-├── requirements.txt         # pandas, yfinance
 ├── .github/
 │   └── workflows/
-│       └── update_data.yml  # CI: cron, dispatch, push
-└── README.md                # (este archivo)
+│       └── update_data.yml              # CI: cron, dispatch, push
+├── docs/
+│   └── AlexisMachado_JuliánMartínez # Documento de entrega
+├── src/
+│   └── msft_analytics/
+│       ├── __pycache__/
+│       ├── collector.py                # Clase MSFTCollector
+│       ├── dashboard.py                # Dashboard BI con KPIs
+│       ├── enricher.py                 # Enriquecimiento de datos
+│       ├── logger.py                   # Logger dual consola/archivo
+│       ├── modeller.py                 # Modelo predictivo (entrenar / predecir)
+│       ├── predict_lstm.py             # (Model.pkl LSTM Artefacto entrenado)
+│       ├── msft_analysis.ipynb         # Exploración y pruebas en notebook
+│       ├── static/
+│       │   ├── data/
+│       │   │   ├── historical.db              # Base SQLite
+│       │   │   ├── historical.csv             # Datos históricos
+│       │   │   └── historical_enriched.csv    # Enriquecidos
+│       │   ├── logs/
+│       │   │   ├── msft_analytics.log         # Log collector
+│       │   │   ├── msft_enricher.log          # Log enricher
+│       │   │   ├── msft_inference.log         # Log de predicciones
+│       │   │   └── msft_model.log             # Log modelado
+│       │   └── models/
+│       │       └── model.pkl                  # Artefacto entrenado
+├── setup.py                         # Instalación y entry-point CLI
+├── requirements.txt                 # Dependencias: pandas, yfinance, etc.
+├── .gitignore
+└── README.md                        # (este archivo)
+
 ````
 
 ---
 
-## 4. Requerimientos Previos ✅
+## 3. Requerimientos Previos ✅
 
 Antes de ejecutar el proyecto, asegúrate de contar con:
 
 * 🐍 **Python 3.8+**
-* 🌐 **Internet** (para acceder a Yahoo Finanzas)
+* 🌐 **Internet**
 * 🔧 **Git** (clonación y CI)
 * 🤖 **Cuenta en GitHub** para Actions
 
 ---
 
-## 5. Instalación y Setup ⚙️
+## 4. Instalación y Setup ⚙️
 
 ### 🔹 1. Clonar con Git
 Ejecuta el siguiente comando en tu terminal:  
@@ -157,10 +266,10 @@ from setuptools import setup, find_packages
 
 setup(
     name="proyecto-integrado-v-datos-msft-analytics", 
-    version="1.0.0",  
+    version="2.0.0",  
     author="Jhon Alexis Machado Rodriguez",  
     author_email="jmachadoa12@gmail.com",  
-    description="Proyecto Integrado V - Línea de Énfasis (Entrega 1): Automatización de la recolección y análisis de datos históricos del indicador MSFT (Microsoft) desde Yahoo Finanzas.",
+    description="Proyecto Integrado V - Línea de Énfasis (Entrega 2): Automatización de la recolección y análisis de datos históricos del indicador MSFT (Microsoft) desde Yahoo Finanzas y MSFT Insight 360: Enriquecimiento, Predicción y Visualización",
 
     # Encontramos paquetes en la carpeta src
     packages=find_packages(where="src"), 
@@ -168,15 +277,25 @@ setup(
     package_dir={"": "src"},  
 
     # Dependencias necesarias
-    install_requires=[  
-        "pandas",
-        "yfinance",
+    install_requires=[
+        "pandas>=2.2.3",
+        "yfinance>=0.2.0",
+        "numpy>=1.24.0",
+        "scikit-learn>=1.0.0",
+        "statsmodels>=0.14.0",
+        "matplotlib>=3.7.0",
+        "tensorflow>=2.11.0",
+        "streamlit>=1.24.0",
+        "plotly>=5.15.0"
     ],
 
-    # Script de consola al instalar el paquete
+    # Scripts de consola al instalar los paquetes
     entry_points={  
         "console_scripts": [
             "msft-collector=msft_analytics.collector:run",
+            "msft-enricher=msft_analytics.enricher:run",
+            "msft-modeller=msft_analytics.modeller:run",
+            "msft-predict=msft_analytics.predict_lstm:run"
         ],
     },
 
@@ -190,6 +309,7 @@ setup(
     # Versión mínima de Python
     python_requires=">=3.8", 
 )
+
 ```
 
 Asegúrate de estar en el directorio raíz del proyecto (donde está setup.py).  
@@ -203,18 +323,27 @@ Esto instalará el paquete en tu entorno Python y permitirá modificar el códig
 
 ---
 
-## 6. Uso Local 🚀
+## 5. Uso Local 🚀
 
 Tras configurar el entorno, ejecuta:
 
 ```bash
 python src/msft_analytics/collector.py
+python src/msft_analytics/enricher.py  
+python src/msft_analytics/modeller.py   
+python src/msft_analytics/predict_lstm.py
+streamlit run src/msft_analytics/dashboard.py  
+
 ```
 
 > O simplemente:
 >
 > ```bash
 > msft-collector
+> msft-enricher
+> msft-modeller
+> msft-predict
+> streamlit run src/msft_analytics/dashboard.py  
 > ```
 >
 > 
@@ -225,29 +354,45 @@ Al finalizar, verás en consola logs detallados y en `static/data/` los archivos
 
 ### 🔹 Archivos generados al finalizar
 
-✔ **Base de datos SQLite:**
+✔ **Base de datos SQLite:**  
 📂 Se crea (o actualiza) el archivo `historical.db` en `src/msft_analytics/static/data/`.
 
-✔ **Archivo CSV completo:**
+✔ **Archivo CSV completo:**  
 📊 Se genera o actualiza el archivo `historical.csv` con todos los registros históricos desde 1986 en `src/msft_analytics/static/data/`.
 
-✔ **Archivo de log para auditoría:**
-📝 Se registra toda la ejecución en `msft_analytics.log`, ubicado en `src/msft_analytics/static/logs/`.
+✔ **Archivo CSV enriquecido:**  
+➕ Se guarda `historical_enriched.csv` con variables derivadas o fuentes adicionales en `src/msft_analytics/static/data/`.
 
-✅ ¡Listo! El proceso de descarga, transformación, persistencia y auditoría de datos de **MSFT** se ha completado con éxito. 🎉
+✔ **Modelo entrenado:**  
+🧠 Se guarda el artefacto de modelo en `model.pkl`, ubicado en `src/msft_analytics/static/models/`.
+
+✔ **Logs detallados de cada componente:**  
+📝  
+- `msft_analytics.log`: proceso de recolección  
+- `msft_enricher.log`: proceso de enriquecimiento  
+- `msft_model.log`: entrenamiento del modelo  
+- `msft_inference.log`: predicciones generadas  
+Ubicados todos en `src/msft_analytics/static/logs/`.
+
+📊 **Dashboard interactivo:**  
+🚀 Para visualizar el panel BI con KPIs y visualizaciones, ejecuta:
+
+```bash
+streamlit run src/msft_analytics/dashboard.py
+```
 
 ---
 
-## 7. Automatización con GitHub Actions 🤖
+## 6. Automatización con GitHub Actions 🤖
 
 El workflow `.github/workflows/update_data.yml` incluye:
 
 ```bash
-name: 📈 Automatización de Datos Históricos MSFT
+name: 📊 MSFT DataOps - Colector, Enriquecimiento, Modelo y Dashboard
 
 on:
   schedule:
-    - cron: "0 0 * * *" # ⏰ Se Ejecuta Cada Día a La Medianoche (UTC)
+    - cron: "0 5 * * *" # ⏰ Se Ejecuta Cada Día a Medianoche (hora de Colombia, UTC-5)
   workflow_dispatch:
 
 jobs:
@@ -268,38 +413,44 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
 
-      - name: 🚀 Ejecutar el colector
+      - name: 🚀 Ejecutar colector
         run: |
           msft-collector
+
+      - name: ✨ Ejecutar enriquecimiento
+        run: |
+          msft-enricher
+
+      - name: 🧠 Ejecutar modelo
+        run: |
+          msft-modeller
+
+      - name: 🔮 Ejecutar predicción
+        run: |
+          msft-predict
 
       - name: 📂 Configurar Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: 📤 Hacer commit de los datos actualizados
+      - name: 📤 Commit del Colector, Enriquecimiento, Modelo y Dashboard
         run: |
-          git add src/msft_analytics/static/data/*
-          git add src/msft_analytics/static/logs/msft_analytics.log
-          git commit -m "Actualización automática de datos MSFT [GitHub Actions]" || echo "No hay cambios para commitear"
+          git add src/msft_analytics/static/data/*.csv
+          git add src/msft_analytics/static/logs/*.log
+          git add src/msft_analytics/static/models/*.pkl
+          git commit -m "📊 Actualización Automática de Datos [GitHub Actions]" || echo "No hay cambios para commitear"
           git push
+
 ```
 
-* **cron**: 🤖 (diario a la medianoche 00:00 UTC)
+* **cron**: 🤖 (diario a la medianoche "0 5 * * *" hora de Colombia, UTC-5)
 * **workflow\_dispatch**: 🖱️ manual
 * **push**: 🔀 a `main`
 
-**Pasos**:
-
-1. Checkout del repo
-2. Setup Python 3.9
-3. `pip install -e .`
-4. `msft-collector`
-5. Git commit & push de `historical.db` y `historical.csv` (si cambian)
-
 ---
 
-## 8. Trazabilidad y Logging 🪵
+## 7. Trazabilidad y Logging 🪵
 
 El logger registra:
 
@@ -320,16 +471,7 @@ El logger registra:
 
 ---
 
-## 9. Resultados Obtenidos 📈
-
-* Histórico de MSFT desde 1986 completo y actualizado.
-* Incremento diario 1 registro hábil o varios (sin duplicados).
-* Datos accesibles para SQL, pandas, Excel, Tableau, Power BI.
-* Base sólida para análisis de series temporales y ML.
-
----
-
-## 10. Licencia y Autores 📝
+## 8. Licencia y Autores 📝
 
 **MIT © 2025**
 
@@ -342,7 +484,7 @@ IU Digital de Antioquia — Ingeniería de Software y Datos
 
 ---
 
-## 11. Autores
+## 9. Autores
 
 <div align="center">
   <img src="https://www.iudigital.edu.co/images/11.-IU-DIGITAL.png" alt="IU Digital" width="350">
@@ -371,7 +513,7 @@ IU Digital de Antioquia — Ingeniería de Software y Datos
 
   ━━━━━━━━━━━━━━━━━━━━━━━
 
-  **🗓 Sábado, 24 de Mayo del 2025**  
+  **🗓 Domingo, 25 de Mayo del 2025**  
 
 </div>
 
