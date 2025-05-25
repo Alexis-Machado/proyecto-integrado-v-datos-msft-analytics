@@ -1,0 +1,7 @@
+2025-05-25 20:19:59,997 - INFO - Directorio De Modelos Creado.
+2025-05-25 20:19:59,998 - INFO - Iniciando Entrenamiento Del Modelo LSTM...
+2025-05-25 20:21:23,225 - INFO - RMSE: 9.6872
+2025-05-25 20:21:23,225 - INFO - MAE: 8.8977
+2025-05-25 20:21:23,226 - INFO - MAPE: 3.37%
+2025-05-25 20:21:23,226 - INFO - R²: 0.9886
+2025-05-25 20:21:23,226 - INFO - Realizando Predicción A 7 Días...
