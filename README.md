@@ -31,7 +31,31 @@
   </div>
 </div>
 
+---
 
+<div align="center" style="margin: 40px 0;">
+  <a href="https://drive.google.com/file/d/1deOZeV6LxbOFJ_qomskiRrYN-A7QCvsy/view?usp=sharing" target="_blank" 
+     style="
+       display: inline-block;
+       background-color: #1976d2;
+       color: white;
+       font-size: 26px;
+       font-weight: bold;
+       padding: 18px 45px;
+       border-radius: 12px;
+       text-decoration: none;
+       box-shadow: 0 4px 12px rgba(25,118,210,0.4);
+       transition: background-color 0.3s ease;
+     "
+     onmouseover="this.style.backgroundColor='#155a9c'"
+     onmouseout="this.style.backgroundColor='#1976d2'"
+  >
+    🎥 Ver Video - Actividad Final
+  </a>
+  <div style="margin-top: 15px; font-size: 16px; font-style: italic;">
+    Haz clic para ver la presentación en video de los resultados clave del proyecto.
+  </div>
+</div>
 
 ---
 
