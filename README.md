@@ -2,7 +2,7 @@
 
 <div align="center">
   <h1>Proyecto Integrado V – Línea de Énfasis</h1>
-  <h3>Entrega 2: Automatización de la recolección y análisis de datos históricos del indicador MSFT (Microsoft) desde Yahoo Finanzas y MSFT Insight 360: Enriquecimiento, Predicción y Visualización 📈🤖🔍📊💡</h3>
+  <h3>Entrega 3: Automatización de la recolección y análisis de datos históricos del indicador MSFT (Microsoft) desde Yahoo Finanzas y MSFT Insight 360: Enriquecimiento, Predicción y Visualización - Refinamiento de los indicadores y las conclusiones en el dashboard - Video Final del Proyecto. 📈🤖🔍📊💡</h3>
 </div>
 
 ---
@@ -515,10 +515,10 @@ IU Digital de Antioquia — Ingeniería de Software y Datos
 
   ━━━━━━━━━━━━━━━━━━━━━━━
 
-  <h1>📋 Evidencia de Aprendizaje 2<br>
-  <sub>Proyecto Integrado V - Linea de Énfasis (Entrega 2)
+  <h1>📋 Evidencia de Aprendizaje 3<br>
+  <sub>Proyecto Integrado V - Linea de Énfasis (Entrega 3)
 <sub></h1>
-  <h3>Segunda parte del Proyecto Integrador</h3>
+  <h3>Última parte del Proyecto Integrador</h3>
 
   ━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -537,7 +537,7 @@ IU Digital de Antioquia — Ingeniería de Software y Datos
 
   ━━━━━━━━━━━━━━━━━━━━━━━
 
-  **🗓 Domingo, 25 de Mayo del 2025**  
+  **🗓 Viernes, 13 de Junio del 2025**  
 
 </div>
 
