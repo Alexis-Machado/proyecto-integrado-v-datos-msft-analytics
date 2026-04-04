@@ -277,7 +277,7 @@ def calculate_technical_indicators(df):
     df['volume_ratio'] = df['volumen'] / df['volume_sma'].replace(0, 1)
     
     # Rellenamos NaN con valores por defecto
-    df.fillna(method='ffill', inplace=True)
+    df.ffill(inplace=True)
     df.fillna(0, inplace=True)
     
     return df
