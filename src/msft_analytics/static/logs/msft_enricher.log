@@ -988,3 +988,6 @@
 2026-05-08 06:28:22,461 - INFO - Enricher: Leyendo /home/runner/work/proyecto-integrado-v-datos-msft-analytics/proyecto-integrado-v-datos-msft-analytics/src/msft_analytics/static/data/historical.csv
 2026-05-08 06:28:22,487 - INFO - Enricher: KPIs Calculados Correctamente
 2026-05-08 06:28:22,642 - INFO - Enricher: CSV Enriquecido Guardado En /home/runner/work/proyecto-integrado-v-datos-msft-analytics/proyecto-integrado-v-datos-msft-analytics/src/msft_analytics/static/data/historical_enriched.csv
+2026-05-09 07:02:58,571 - INFO - Enricher: Leyendo /home/runner/work/proyecto-integrado-v-datos-msft-analytics/proyecto-integrado-v-datos-msft-analytics/src/msft_analytics/static/data/historical.csv
+2026-05-09 07:02:58,598 - INFO - Enricher: KPIs Calculados Correctamente
+2026-05-09 07:02:58,755 - INFO - Enricher: CSV Enriquecido Guardado En /home/runner/work/proyecto-integrado-v-datos-msft-analytics/proyecto-integrado-v-datos-msft-analytics/src/msft_analytics/static/data/historical_enriched.csv
