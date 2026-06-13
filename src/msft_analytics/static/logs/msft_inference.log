@@ -2158,3 +2158,9 @@
 2026-06-12 08:54:52,501 - INFO - Datos Cargados Y Preprocesados Correctamente
 2026-06-12 08:54:52,501 - INFO - Iniciando Predicción Para 7 Días
 2026-06-12 08:54:52,894 - INFO - Predicción Completada Correctamente
+2026-06-13 08:19:04,972 - INFO - Cargando LSTM Desde: src/msft_analytics/static/models/model.pkl
+2026-06-13 08:19:08,074 - INFO - LSTM Cargado Correctamente (Ventana=30)
+2026-06-13 08:19:08,074 - INFO - Leyendo Datos Desde: src/msft_analytics/static/data/historical_enriched.csv
+2026-06-13 08:19:08,108 - INFO - Datos Cargados Y Preprocesados Correctamente
+2026-06-13 08:19:08,108 - INFO - Iniciando Predicción Para 7 Días
+2026-06-13 08:19:08,504 - INFO - Predicción Completada Correctamente
